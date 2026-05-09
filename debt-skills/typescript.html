@@ -32,19 +32,66 @@
             <img class="doc-hero-image" src="../assets/images/brittle-tests.png" alt="">
         </section>
 
-        <section class="section doc-section">
-            <h2>Signals</h2>
-            <ul>
-                <li>`any`, `unknown as`, non-null assertions, and casts that hide uncertainty.</li>
-                <li>API, local storage, URL, and event payloads trusted without validation.</li>
-                <li>State split across component, store, cache, URL, and server without one owner.</li>
-                <li>React components owning business rules that should live behind a boundary.</li>
-                <li>Mocks that prove implementation details while the real integration can break.</li>
-            </ul>
-            <h2>Boundary</h2>
-            <p>The skill does not replace ESLint, TypeScript, Prettier, codemods, framework checks, or architecture rules. It reviews what remains after those are done.</p>
-            <h2>Best Use</h2>
-            <p>Use it on API edges, React state changes, auth and billing flows, cache logic, schema migrations, and build config changes.</p>
+        <section class="section doc-section wide">
+            <div class="doc-layout">
+                <article>
+                    <h2 id="job">The Job</h2>
+                    <p>The TypeScript skill reviews the gap between compile-time confidence and runtime truth. It looks for casts, trusted external data, state drift, UI-owned business rules, and tests that only prove mocks.</p>
+                    <div class="doc-callout">
+                        <strong>Run it on:</strong>
+                        <p>API edges, React state changes, auth and billing flows, cache logic, schema migrations, and build config changes.</p>
+                    </div>
+
+                    <h2 id="signals">Signals</h2>
+                    <div class="signal-list">
+                        <article>
+                            <h3>Unsafe casts</h3>
+                            <p>`any`, `unknown as`, non-null assertions, and double casts that silence uncertainty instead of narrowing it.</p>
+                        </article>
+                        <article>
+                            <h3>Trusted runtime data</h3>
+                            <p>API responses, local storage, URLs, events, and feature flags used as if TypeScript had seen them at runtime.</p>
+                        </article>
+                        <article>
+                            <h3>State drift</h3>
+                            <p>One fact split across component state, stores, cache, URL params, and server state without a clear owner.</p>
+                        </article>
+                        <article>
+                            <h3>UI-owned business rules</h3>
+                            <p>React components deciding permissions, billing states, workflow transitions, or validation without a boundary.</p>
+                        </article>
+                    </div>
+
+                    <h2 id="examples">Example Findings</h2>
+                    <div class="example-grid">
+                        <article class="example-card">
+                            <h3>P1 API trust leak</h3>
+                            <p>The checkout flow casts a gateway response and branches on fields that may not exist.</p>
+                        </article>
+                        <article class="example-card">
+                            <h3>P2 duplicated selected team</h3>
+                            <p>Team identity lives in URL, store, cache key, and component state with no single source of truth.</p>
+                        </article>
+                        <article class="example-card">
+                            <h3>P2 mock-only coverage</h3>
+                            <p>The test proves the hook called the client. It never proves request shape, error mapping, or retry behavior.</p>
+                        </article>
+                    </div>
+
+                    <h2 id="prompt">Review Prompt</h2>
+                    <pre class="code-block"><code>Review this diff with the Vølven TypeScript debt skill.
+Focus on unsafe casts, trusted runtime data, duplicated state,
+React-owned business rules, mocked tests, and build config drift.
+Ignore ESLint, tsc, Prettier, and framework-check duplicates.
+Findings first. Include smallest useful fix.</code></pre>
+                </article>
+                <aside class="doc-nav" aria-label="Page navigation">
+                    <a href="#job">The job</a>
+                    <a href="#signals">Signals</a>
+                    <a href="#examples">Examples</a>
+                    <a href="#prompt">Prompt</a>
+                </aside>
+            </div>
         </section>
     </main>
 

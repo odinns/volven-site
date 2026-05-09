@@ -32,24 +32,62 @@
             <img class="doc-hero-image" src="../assets/images/hidden-contracts.png" alt="">
         </section>
 
-        <section class="section doc-section">
-            <h2>What It Looks For</h2>
-            <ul>
-                <li>Hidden coupling and undocumented contracts.</li>
-                <li>Brittle tests that protect choreography instead of behavior.</li>
-                <li>Unsafe dynamic behavior that moves risk to runtime.</li>
-                <li>Deploy and upgrade friction waiting for the wrong Friday.</li>
-                <li>Trapped knowledge that only one person or fixture understands.</li>
-            </ul>
-            <h2>What It Ignores</h2>
-            <p>Formatting, broad refactor sermons, duplicate static-analysis findings, and taste complaints. Those do not become useful just because they are delivered confidently.</p>
-            <h2>Finding Shape</h2>
-            <pre class="code-block"><code>P2: Order state lives as loose strings
+        <section class="section doc-section wide">
+            <div class="doc-layout">
+                <article>
+                    <h2 id="job">The Job</h2>
+                    <p>The core skill gives an agent a strict definition of technical debt: future cost created by a design, contract, workflow, test, or operational choice. It keeps the review away from style noise and vague smell-hunting.</p>
+                    <div class="doc-callout">
+                        <strong>Use it when:</strong>
+                        <p>You need a second pass after normal checks pass, especially before merging changes that affect boundaries, tests, deploys, upgrades, ownership, or cross-module behavior.</p>
+                    </div>
+
+                    <h2 id="signals">What It Looks For</h2>
+                    <div class="signal-list">
+                        <article>
+                            <h3>Hidden contracts</h3>
+                            <p>Call order, magic names, setup rituals, lifecycle assumptions, or fixture knowledge that production code never states.</p>
+                        </article>
+                        <article>
+                            <h3>Brittle tests</h3>
+                            <p>Tests that assert choreography while the real user, queue, database, or integration path can still break.</p>
+                        </article>
+                        <article>
+                            <h3>Unsafe dynamic behavior</h3>
+                            <p>Runtime-only assumptions around shapes, strings, globals, configuration, and external data.</p>
+                        </article>
+                        <article>
+                            <h3>Release friction</h3>
+                            <p>Deploy, rollback, migration, environment, and upgrade traps that turn ordinary changes into incident bait.</p>
+                        </article>
+                    </div>
+
+                    <h2 id="ignore">What It Ignores</h2>
+                    <p>Formatting, broad refactor sermons, duplicate static-analysis findings, taste complaints, and clever rewrites with no clear payoff. Those do not become useful because the agent says them with confidence.</p>
+
+                    <h2 id="finding">Finding Shape</h2>
+                    <pre class="code-block"><code>P2: Order state lives as loose strings
 type: code
 future cost: new states drift across policies
 evidence: string literals drive transitions
 smallest useful fix: add an enum boundary
 ignore if: throwaway import code</code></pre>
+
+                    <h2 id="prompt">Review Prompt</h2>
+                    <pre class="code-block"><code>Review this diff with the Vølven core debt skill.
+Focus on future maintenance cost, hidden contracts, brittle tests,
+unsafe dynamic behavior, deploy friction, upgrade friction, and trapped knowledge.
+Ignore style, generic smells, and duplicate tool findings.
+Findings first, ordered by severity. Max 7 bullets.</code></pre>
+                </article>
+                <aside class="doc-nav" aria-label="Page navigation">
+                    <a href="#job">The job</a>
+                    <a href="#signals">Signals</a>
+                    <a href="#ignore">Ignored noise</a>
+                    <a href="#finding">Finding shape</a>
+                    <a href="#prompt">Prompt</a>
+                </aside>
+            </div>
         </section>
     </main>
 

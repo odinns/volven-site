@@ -74,6 +74,56 @@
                 </article>
             </div>
         </section>
+
+        <section class="section">
+            <div class="section-heading">
+                <p class="eyebrow">How to use them</p>
+                <h2>Run the right lens at the right moment.</h2>
+                <p>Vølven works best after normal checks have passed. Let formatters, type checkers, tests, and framework tools clear the cheap noise. Then ask what still makes the next change expensive.</p>
+            </div>
+            <div class="workflow-steps">
+                <article>
+                    <span>01</span>
+                    <h3>Pick the review lens</h3>
+                    <p>Use the core skill for general debt review. Add the language skill when the risk lives in local framework or runtime behavior.</p>
+                </article>
+                <article>
+                    <span>02</span>
+                    <h3>Review changed behavior</h3>
+                    <p>Focus on the code that moved and the contracts around it. Broad archaeology belongs in a separate task.</p>
+                </article>
+                <article>
+                    <span>03</span>
+                    <h3>Write debt-shaped findings</h3>
+                    <p>Every finding needs evidence, future cost, the smallest useful fix, and the case where ignoring it is acceptable.</p>
+                </article>
+                <article>
+                    <span>04</span>
+                    <h3>Ratchet what can be counted</h3>
+                    <p>Use the Pest plugin for deterministic PHP signals so CI blocks growth while the skill handles judgment-heavy review.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section split">
+            <div>
+                <p class="eyebrow">Prompt shape</p>
+                <h2>Give the agent a debt job, not a vague review job.</h2>
+                <p>Good debt review prompts are narrow. They tell the agent what changed, which lens to use, and which kinds of findings are out of scope.</p>
+                <div class="doc-callout">
+                    <strong>Use this shape:</strong>
+                    <p>Review this diff with the Vølven PHP debt skill. Focus on future maintenance cost, hidden contracts, weak runtime boundaries, misleading tests, and suppressions. Ignore style, naming taste, and static-analysis duplicates. Findings first. Max 7 bullets.</p>
+                </div>
+            </div>
+            <div>
+                <img class="section-image" src="../assets/images/hidden-contracts.png" alt="">
+                <div class="boundary-list">
+                    <span>Normal tools clear correctness noise.</span>
+                    <span>Vølven reviews future cost.</span>
+                    <span>Pest budgets stop countable debt from growing.</span>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>

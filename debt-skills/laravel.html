@@ -32,19 +32,66 @@
             <img class="doc-hero-image" src="../assets/images/deploy-friction.png" alt="">
         </section>
 
-        <section class="section doc-section">
-            <h2>Signals</h2>
-            <ul>
-                <li>Model observers, events, and casts hiding writes or external calls.</li>
-                <li>Queued jobs without idempotency, retry shape, or failure ownership.</li>
-                <li>Validation, policies, resources, and database constraints drifting apart.</li>
-                <li>Migrations that are hostile to production data, locks, or rollbacks.</li>
-                <li>Factories and feature tests that know more rules than the app code.</li>
-            </ul>
-            <h2>Boundary</h2>
-            <p>The skill does not replace Pest architecture tests, PHPStan, Psalm, Rector, Pint, or Laravel's own checks. It reviews the future cost those tools cannot price cleanly.</p>
-            <h2>Best Use</h2>
-            <p>Use it on PRs that touch models, jobs, migrations, authorization, validation, billing, mail, queues, scheduled tasks, or framework upgrades.</p>
+        <section class="section doc-section wide">
+            <div class="doc-layout">
+                <article>
+                    <h2 id="job">The Job</h2>
+                    <p>The Laravel skill reviews the places where the framework hides behavior for convenience: observers, events, jobs, casts, policies, factories, migrations, and lifecycle hooks.</p>
+                    <div class="doc-callout">
+                        <strong>Best target:</strong>
+                        <p>PRs touching models, jobs, migrations, authorization, validation, billing, mail, queues, scheduled tasks, or framework upgrades.</p>
+                    </div>
+
+                    <h2 id="signals">Signals</h2>
+                    <div class="signal-list">
+                        <article>
+                            <h3>Quiet model side effects</h3>
+                            <p>Observers, events, casts, accessors, mutators, and global scopes that make writes or reads do more than the caller can see.</p>
+                        </article>
+                        <article>
+                            <h3>Unsafe jobs</h3>
+                            <p>Queued work without idempotency, retry shape, timeout rules, failure ownership, or clear external side-effect boundaries.</p>
+                        </article>
+                        <article>
+                            <h3>Validation drift</h3>
+                            <p>Form requests, policies, resources, casts, and database constraints disagreeing about what data is allowed.</p>
+                        </article>
+                        <article>
+                            <h3>Production-hostile migrations</h3>
+                            <p>Locks, destructive changes, backfills, and rollbacks that only work in a tiny local database.</p>
+                        </article>
+                    </div>
+
+                    <h2 id="examples">Example Findings</h2>
+                    <div class="example-grid">
+                        <article class="example-card">
+                            <h3>P1 retry can double-charge</h3>
+                            <p>The job retries after a gateway timeout but has no idempotency key around the external payment call.</p>
+                        </article>
+                        <article class="example-card">
+                            <h3>P2 observer hides mail</h3>
+                            <p>Saving a model can send customer email. Tests that create fixtures now depend on production side effects staying quiet.</p>
+                        </article>
+                        <article class="example-card">
+                            <h3>P2 migration locks table</h3>
+                            <p>A nullable-to-required change has no backfill plan and will lock a hot production table.</p>
+                        </article>
+                    </div>
+
+                    <h2 id="prompt">Review Prompt</h2>
+                    <pre class="code-block"><code>Review this diff with the Vølven Laravel debt skill.
+Focus on hidden model side effects, queue safety, validation drift,
+policy drift, migration risk, factory brittleness, and framework lifecycle traps.
+Ignore Pint, PHPStan, Rector, and Pest arch duplicates.
+Findings first. Max 7 bullets.</code></pre>
+                </article>
+                <aside class="doc-nav" aria-label="Page navigation">
+                    <a href="#job">The job</a>
+                    <a href="#signals">Signals</a>
+                    <a href="#examples">Examples</a>
+                    <a href="#prompt">Prompt</a>
+                </aside>
+            </div>
         </section>
     </main>
 

@@ -32,19 +32,66 @@
             <img class="doc-hero-image" src="../assets/images/hidden-contracts.png" alt="">
         </section>
 
-        <section class="section doc-section">
-            <h2>Signals</h2>
-            <ul>
-                <li>Objects whose expected shape only exists in caller memory.</li>
-                <li>Callback and promise mixing that hides ordering or error behavior.</li>
-                <li>Mutable shared state touched from unrelated paths.</li>
-                <li>Divergent helper functions that encode competing business rules.</li>
-                <li>Framework magic without local conventions or tests around the edge.</li>
-            </ul>
-            <h2>Boundary</h2>
-            <p>The skill does not replace ESLint, Prettier, framework checks, or codemods. It looks for runtime debt those tools will politely walk past.</p>
-            <h2>Best Use</h2>
-            <p>Use it on browser integrations, Node services, shared utilities, async workflows, legacy modules, and framework-heavy code.</p>
+        <section class="section doc-section wide">
+            <div class="doc-layout">
+                <article>
+                    <h2 id="job">The Job</h2>
+                    <p>The JavaScript skill reviews runtime contracts where there is no compiler to catch the lie. It looks for hidden shapes, async confusion, shared mutation, drifting helpers, and framework behavior nobody has written down.</p>
+                    <div class="doc-callout">
+                        <strong>Run it on:</strong>
+                        <p>Browser integrations, Node services, shared utilities, async workflows, legacy modules, and framework-heavy code.</p>
+                    </div>
+
+                    <h2 id="signals">Signals</h2>
+                    <div class="signal-list">
+                        <article>
+                            <h3>Hidden object shapes</h3>
+                            <p>Objects passed around with expected fields that only exist in caller memory and old test fixtures.</p>
+                        </article>
+                        <article>
+                            <h3>Async mixing</h3>
+                            <p>Callbacks, promises, timers, and event handlers combined in ways that hide ordering, retries, or error flow.</p>
+                        </article>
+                        <article>
+                            <h3>Shared mutation</h3>
+                            <p>Module state, browser globals, singleton clients, or caches touched from unrelated paths.</p>
+                        </article>
+                        <article>
+                            <h3>Framework magic</h3>
+                            <p>Implicit routing, hydration, plugin hooks, or build behavior without local conventions around the edge.</p>
+                        </article>
+                    </div>
+
+                    <h2 id="examples">Example Findings</h2>
+                    <div class="example-grid">
+                        <article class="example-card">
+                            <h3>P1 callback error swallowed</h3>
+                            <p>The callback path logs failure but resolves the promise, so callers treat a failed sync as complete.</p>
+                        </article>
+                        <article class="example-card">
+                            <h3>P2 object shape folklore</h3>
+                            <p>Widget config requires `mode`, `tenant`, and `flags`, but no boundary checks or docs say so.</p>
+                        </article>
+                        <article class="example-card">
+                            <h3>P2 helper drift</h3>
+                            <p>Three date helpers disagree about timezone behavior. Tests only cover the easy local case.</p>
+                        </article>
+                    </div>
+
+                    <h2 id="prompt">Review Prompt</h2>
+                    <pre class="code-block"><code>Review this diff with the Vølven JavaScript debt skill.
+Focus on missing contracts, hidden object shapes, callback/promise mixing,
+mutable shared state, divergent utilities, framework magic, and weak tests.
+Ignore ESLint, Prettier, framework-check, and codemod findings.
+Findings first with evidence.</code></pre>
+                </article>
+                <aside class="doc-nav" aria-label="Page navigation">
+                    <a href="#job">The job</a>
+                    <a href="#signals">Signals</a>
+                    <a href="#examples">Examples</a>
+                    <a href="#prompt">Prompt</a>
+                </aside>
+            </div>
         </section>
     </main>
 

@@ -14,6 +14,7 @@
     --muted: oklch(0.820 0.040 122);
     --shadow: oklch(0.070 0.015 145 / 0.55);
     --radius: 8px;
+    --max: 1160px;
 }
 
 * {
@@ -53,14 +54,17 @@ pre {
     position: sticky;
     top: 0;
     z-index: 10;
+    width: min(var(--max), calc(100% - 2rem));
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1rem clamp(1rem, 4vw, 3rem);
+    padding: 1rem 0;
     background: oklch(0.175 0.035 145 / 0.84);
     backdrop-filter: blur(18px);
-    box-shadow: 0 1px 0 oklch(1 0 0 / 0.10);
+    box-shadow: 0 1px 0 oklch(1 0 0 / 0.10), 0 0 0 100vmax oklch(0.175 0.035 145 / 0.84);
+    clip-path: inset(0 -100vmax);
 }
 
 .brand,
@@ -107,22 +111,26 @@ nav a:active,
 .hero {
     position: relative;
     display: grid;
-    min-height: calc(100svh - 4.1rem);
+    width: min(var(--max), calc(100% - 2rem));
+    min-height: calc(92svh - 4.1rem);
+    margin: 0 auto;
     grid-template-columns: minmax(0, 1.08fr) minmax(20rem, 0.72fr);
     gap: clamp(2rem, 5vw, 5rem);
     align-items: center;
-    padding: clamp(3rem, 7vw, 7rem) clamp(1rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem);
+    padding: clamp(3rem, 7vw, 7rem) 0 clamp(2rem, 5vw, 4rem);
     box-shadow: inset 0 -1px 0 oklch(1 0 0 / 0.08);
     overflow: hidden;
 }
 
 .doc-hero {
     display: grid;
-    min-height: 72svh;
+    width: min(var(--max), calc(100% - 2rem));
+    min-height: 62svh;
+    margin: 0 auto;
     grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.55fr);
     gap: clamp(2rem, 5vw, 5rem);
     align-items: center;
-    padding: clamp(3rem, 7vw, 7rem) clamp(1rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem);
+    padding: clamp(3rem, 7vw, 6rem) 0 clamp(2rem, 5vw, 4rem);
     box-shadow: inset 0 -1px 0 oklch(1 0 0 / 0.08);
     overflow: hidden;
 }
@@ -174,7 +182,7 @@ p {
 h1 {
     max-width: 13ch;
     margin-bottom: 1.35rem;
-    font-size: clamp(4rem, 9vw, 8.6rem);
+    font-size: clamp(3.2rem, 7vw, 5.8rem);
     line-height: 0.88;
     letter-spacing: 0;
     text-wrap: balance;
@@ -182,7 +190,7 @@ h1 {
 
 h2 {
     margin-bottom: 1rem;
-    font-size: clamp(2rem, 4vw, 4rem);
+    font-size: clamp(2rem, 3.6vw, 3.25rem);
     line-height: 1;
     letter-spacing: 0;
     text-wrap: balance;
@@ -304,7 +312,9 @@ pre {
 }
 
 .section {
-    padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 3rem);
+    width: min(var(--max), calc(100% - 2rem));
+    margin: 0 auto;
+    padding: clamp(3rem, 7vw, 6rem) 0;
     box-shadow: inset 0 -1px 0 oklch(1 0 0 / 0.08);
 }
 
@@ -412,8 +422,72 @@ pre {
 }
 
 .doc-section {
-    max-width: 62rem;
+    max-width: min(var(--max), calc(100% - 2rem));
     margin: clamp(2rem, 5vw, 4rem) auto;
+    padding: clamp(2rem, 4vw, 3rem);
+}
+
+.doc-section.wide {
+    max-width: min(var(--max), calc(100% - 2rem));
+}
+
+.doc-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.72fr) minmax(16rem, 0.28fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+}
+
+.doc-nav {
+    position: sticky;
+    top: 5.25rem;
+    display: grid;
+    gap: 0.55rem;
+}
+
+.doc-nav a {
+    padding: 0.55rem 0.7rem;
+    border-radius: 6px;
+    background: oklch(1 0 0 / 0.07);
+    text-decoration: none;
+}
+
+.doc-callout,
+.example-card,
+.signal-list article {
+    border-radius: var(--radius);
+    background: oklch(1 0 0 / 0.07);
+    box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.08);
+}
+
+.doc-callout,
+.example-card,
+.signal-list article {
+    padding: 1rem;
+}
+
+.doc-callout {
+    margin: 1.25rem 0;
+}
+
+.signal-list,
+.example-grid {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.signal-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.example-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.doc-section pre + p,
+.doc-section p + pre,
+.doc-section ul + pre {
+    margin-top: 1rem;
 }
 
 .doc-section h2:not(:first-child) {
@@ -557,9 +631,11 @@ footer a {
 
 footer {
     display: flex;
+    width: min(var(--max), calc(100% - 2rem));
+    margin: 0 auto;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1.5rem clamp(1rem, 4vw, 3rem);
+    padding: 1.5rem 0;
     font-size: 0.92rem;
 }
 
@@ -646,7 +722,8 @@ footer span:first-child {
     .split,
     .doctrine,
     .pest-layout,
-    .section-intro {
+    .section-intro,
+    .doc-layout {
         grid-template-columns: 1fr;
     }
 
@@ -654,8 +731,14 @@ footer span:first-child {
     .signal-grid,
     .budget-grid,
     .workflow-steps,
-    .doc-grid {
+    .doc-grid,
+    .signal-list,
+    .example-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .doc-nav {
+        position: static;
     }
 
     .pest-points {
@@ -700,7 +783,9 @@ footer span:first-child {
     .budget-grid,
     .workflow-steps,
     .variant-list,
-    .doc-grid {
+    .doc-grid,
+    .signal-list,
+    .example-grid {
         grid-template-columns: 1fr;
     }
 

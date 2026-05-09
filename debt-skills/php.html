@@ -32,20 +32,71 @@
             <img class="doc-hero-image" src="../assets/images/growing-suppressions.png" alt="">
         </section>
 
-        <section class="section doc-section">
-            <h2>Signals</h2>
-            <ul>
-                <li>Array shapes passed through core paths without a named contract.</li>
-                <li>`mixed` at boundaries where the shape is used before validation.</li>
-                <li>Magic workflow strings that should be enums or value objects.</li>
-                <li>PHPDoc that silences uncertainty without making behavior clearer.</li>
-                <li>Tests that mock internals while missing real boundary behavior.</li>
-            </ul>
-            <h2>Boundary</h2>
-            <p>The skill does not replace static analysis. It asks what still gets expensive after static analysis is green.</p>
-            <h2>Pair It With Pest</h2>
-            <p>The Pest plugin gives PHP projects a deterministic ratchet for suppressions, TODOs, `mixed`, and large classes.</p>
-            <p><a href="../pest-plugin/">Read the Pest plugin docs</a></p>
+        <section class="section doc-section wide">
+            <div class="doc-layout">
+                <article>
+                    <h2 id="job">The Job</h2>
+                    <p>The PHP skill reviews the code PHP lets you get away with: loose arrays, string workflows, docblocks pretending to be contracts, and tests that pass while the boundary stays soft.</p>
+                    <div class="doc-callout">
+                        <strong>Run it after:</strong>
+                        <p>Pint, PHPStan, Psalm, Rector, and the test suite. Vølven should not repeat those findings. It should ask what still gets expensive after they are green.</p>
+                    </div>
+
+                    <h2 id="signals">Signals</h2>
+                    <div class="signal-list">
+                        <article>
+                            <h3>Weak array contracts</h3>
+                            <p>Arrays moving through services, jobs, controllers, or domain code without a named shape, DTO, value object, or validation point.</p>
+                        </article>
+                        <article>
+                            <h3>Unsafe `mixed`</h3>
+                            <p>`mixed` used past an adapter edge, or read before the unknown shape is checked and narrowed.</p>
+                        </article>
+                        <article>
+                            <h3>Magic workflow strings</h3>
+                            <p>Status, type, event, and state strings that drive behavior without enums or local constants.</p>
+                        </article>
+                        <article>
+                            <h3>Misleading PHPDoc</h3>
+                            <p>Annotations that satisfy tools while hiding runtime uncertainty from the next person changing the code.</p>
+                        </article>
+                    </div>
+
+                    <h2 id="examples">Example Findings</h2>
+                    <div class="example-grid">
+                        <article class="example-card">
+                            <h3>P1 array shape drift</h3>
+                            <p>Payment payload arrays are assembled in three places and consumed as if every key always exists.</p>
+                        </article>
+                        <article class="example-card">
+                            <h3>P2 enum boundary missing</h3>
+                            <p>Order states are strings across policies, mail, and transitions. One typo becomes behavior.</p>
+                        </article>
+                        <article class="example-card">
+                            <h3>P2 shallow mock test</h3>
+                            <p>The test proves the repository was called. It never proves the generated query matches the contract.</p>
+                        </article>
+                    </div>
+
+                    <h2 id="prompt">Review Prompt</h2>
+                    <pre class="code-block"><code>Review this diff with the Vølven PHP debt skill.
+Focus on weak array contracts, unsafe mixed boundaries, magic strings,
+misleading PHPDoc, hidden helper dependencies, and tests that miss behavior.
+Ignore Pint/PHPStan/Psalm/Rector duplicates.
+Findings first. Include smallest useful fix.</code></pre>
+
+                    <h2 id="pest">Pair It With Pest</h2>
+                    <p>The Pest plugin gives PHP projects a deterministic ratchet for suppressions, TODOs, `mixed`, and large classes. Use the skill for judgment. Use the plugin for countable debt pressure.</p>
+                    <p><a href="../pest-plugin/">Read the Pest plugin docs</a></p>
+                </article>
+                <aside class="doc-nav" aria-label="Page navigation">
+                    <a href="#job">The job</a>
+                    <a href="#signals">Signals</a>
+                    <a href="#examples">Examples</a>
+                    <a href="#prompt">Prompt</a>
+                    <a href="#pest">Pest pairing</a>
+                </aside>
+            </div>
         </section>
     </main>
 

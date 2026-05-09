@@ -32,19 +32,66 @@
             <img class="doc-hero-image" src="../assets/images/language-variants.png" alt="">
         </section>
 
-        <section class="section doc-section">
-            <h2>Signals</h2>
-            <ul>
-                <li>Dictionaries and JSON payloads crossing core paths without schema checks.</li>
-                <li>Mutable module state that tests and jobs accidentally share.</li>
-                <li>Swallowed exceptions that turn failures into stale data.</li>
-                <li>Async code without cancellation, timeout, or retry discipline.</li>
-                <li>Scripts that became production workflows without ownership or tests.</li>
-            </ul>
-            <h2>Boundary</h2>
-            <p>The skill does not replace Ruff, mypy, pyright, Black, isort, or normal test failures. It reviews the contracts those tools can only hint at.</p>
-            <h2>Best Use</h2>
-            <p>Use it on API clients, data pipelines, async workers, CLI scripts, import jobs, and code that glues external systems together.</p>
+        <section class="section doc-section wide">
+            <div class="doc-layout">
+                <article>
+                    <h2 id="job">The Job</h2>
+                    <p>The Python skill reviews the cost of dynamic behavior: implicit schemas, broad dictionaries, swallowed errors, mutable globals, async drift, and scripts that quietly became production systems.</p>
+                    <div class="doc-callout">
+                        <strong>Run it on:</strong>
+                        <p>API clients, data pipelines, async workers, CLI scripts, import jobs, and glue code around external systems.</p>
+                    </div>
+
+                    <h2 id="signals">Signals</h2>
+                    <div class="signal-list">
+                        <article>
+                            <h3>Implicit schemas</h3>
+                            <p>Dictionaries and JSON payloads crossing core paths without typed models, validation, or clear ownership.</p>
+                        </article>
+                        <article>
+                            <h3>Mutable shared state</h3>
+                            <p>Module globals, caches, monkeypatches, and fixtures that make tests or workers depend on execution order.</p>
+                        </article>
+                        <article>
+                            <h3>Swallowed failures</h3>
+                            <p>Broad `except`, logging-only handlers, and fallback paths that turn broken inputs into stale output.</p>
+                        </article>
+                        <article>
+                            <h3>Async drift</h3>
+                            <p>Missing timeouts, cancellation rules, backpressure, retries, and cleanup for concurrent work.</p>
+                        </article>
+                    </div>
+
+                    <h2 id="examples">Example Findings</h2>
+                    <div class="example-grid">
+                        <article class="example-card">
+                            <h3>P1 stale data path</h3>
+                            <p>The importer catches all exceptions and returns the previous cache, so failed input looks successful.</p>
+                        </article>
+                        <article class="example-card">
+                            <h3>P2 implicit payload shape</h3>
+                            <p>A dict from an external API is used across three modules without validation or a named schema.</p>
+                        </article>
+                        <article class="example-card">
+                            <h3>P2 async cleanup missing</h3>
+                            <p>Tasks are spawned without cancellation handling, so shutdown can leave work half-written.</p>
+                        </article>
+                    </div>
+
+                    <h2 id="prompt">Review Prompt</h2>
+                    <pre class="code-block"><code>Review this diff with the Vølven Python debt skill.
+Focus on implicit schemas, mutable globals, swallowed exceptions,
+async failure paths, data pipeline contracts, and mock-heavy tests.
+Ignore Ruff, mypy, pyright, Black, and normal test failures.
+Findings first with evidence and smallest useful fix.</code></pre>
+                </article>
+                <aside class="doc-nav" aria-label="Page navigation">
+                    <a href="#job">The job</a>
+                    <a href="#signals">Signals</a>
+                    <a href="#examples">Examples</a>
+                    <a href="#prompt">Prompt</a>
+                </aside>
+            </div>
         </section>
     </main>
 

@@ -27,16 +27,22 @@
                 <p class="eyebrow">Pest plugin</p>
                 <h1>Make debt growth fail in CI.</h1>
                 <p class="hero-copy">The plugin scans deterministic PHP debt signals, compares them to explicit budgets, and can ratchet against a committed baseline.</p>
+                <div class="hero-actions">
+                    <a class="button primary" href="#quickstart">Try it in one test</a>
+                    <a class="button secondary" href="https://github.com/odinns/volven-pest-plugin">View on GitHub</a>
+                </div>
             </div>
             <img class="doc-hero-image" src="../assets/images/baseline-ratchet.png" alt="">
         </section>
 
-        <section class="section doc-section">
-            <h2>Install</h2>
-            <pre class="code-block"><code>composer require --dev odinns/volven-pest-plugin</code></pre>
+        <section class="section doc-section wide">
+            <div class="doc-layout">
+                <article>
+                    <h2 id="quickstart">Quickstart</h2>
+                    <p>Install the plugin, add one Pest test, and make technical-debt growth part of the build instead of a thing someone remembers during code review.</p>
+                    <pre class="code-block"><code>composer require --dev odinns/volven-pest-plugin</code></pre>
 
-            <h2>Basic Pest Test</h2>
-            <pre class="code-block"><code>it('keeps debt inside the budget', function (): void {
+                    <pre class="code-block"><code>it('keeps debt inside the budget', function (): void {
     debt()->budget()
         ->phpstanIgnores(max: 12)
         ->todoComments(max: 20)
@@ -47,28 +53,126 @@
         ->assert();
 });</code></pre>
 
-            <h2>Supported Signals</h2>
-            <ul>
-                <li>PHPStan suppression annotations: `@phpstan-ignore`, `@phpstan-ignore-line`, `@phpstan-ignore-next-line`, and `@phpstan-ignore-*`.</li>
-                <li>TODO and FIXME comments.</li>
-                <li>`mixed` types.</li>
-                <li>Large class-like PHP files.</li>
-            </ul>
+                    <div class="doc-callout">
+                        <strong>What happens next:</strong>
+                        <p>Existing counts must stay inside the budgets. If `mustNotGrow()` is enabled, anything above the committed baseline fails with concrete examples.</p>
+                    </div>
 
-            <h2>Baseline And Ratchet</h2>
-            <p>Generate `.volven/debt-baseline.json` from PHP, commit it, then use `mustNotGrow()` in the budget test. Current MVP baseline generation is intentionally plain PHP, not a rich CLI.</p>
-            <pre class="code-block"><code>debt()->budget()
+                    <h2 id="signals">Supported Signals</h2>
+                    <div class="signal-list">
+                        <article>
+                            <h3>PHPStan suppressions</h3>
+                            <p>Counts `@phpstan-ignore`, `@phpstan-ignore-line`, `@phpstan-ignore-next-line`, and `@phpstan-ignore-*`.</p>
+                        </article>
+                        <article>
+                            <h3>TODO and FIXME</h3>
+                            <p>Tracks comments that often become stale local knowledge unless they are owned or removed.</p>
+                        </article>
+                        <article>
+                            <h3>`mixed` types</h3>
+                            <p>Finds unknown shapes crossing PHP boundaries without a visible contract or validation point.</p>
+                        </article>
+                        <article>
+                            <h3>Large classes</h3>
+                            <p>Flags class-like PHP files large enough to trap unrelated reasons to change.</p>
+                        </article>
+                    </div>
+
+                    <h2 id="budgets">Budget Examples</h2>
+                    <div class="example-grid">
+                        <article class="example-card">
+                            <h3>Strict new package</h3>
+                            <pre><code>debt()->budget()
+    ->phpstanIgnores(max: 0)
+    ->todoComments(max: 0)
+    ->mixedTypes(max: 0)
+    ->largeClasses(max: 0)
+    ->assert();</code></pre>
+                        </article>
+                        <article class="example-card">
+                            <h3>Legacy ratchet</h3>
+                            <pre><code>debt()->budget()
+    ->phpstanIgnores(max: 25)
+    ->todoComments(max: 40)
+    ->mixedTypes(max: 30)
+    ->largeClasses(max: 8)
+    ->mustNotGrow()
+    ->assert();</code></pre>
+                        </article>
+                        <article class="example-card">
+                            <h3>Suppression discipline</h3>
+                            <pre><code>debt()->budget()
+    ->phpstanIgnores(max: 10)
+    ->requireReasons()
+    ->assert();</code></pre>
+                        </article>
+                    </div>
+
+                    <h2 id="baseline">Baseline And Ratchet</h2>
+                    <p>Generate `.volven/debt-baseline.json` from PHP, commit it, then use `mustNotGrow()` in the budget test. Old debt stays visible. New debt fails.</p>
+                    <pre class="code-block"><code>debt()->budget()
     ->phpstanIgnores(max: 999)
     ->todoComments(max: 999)
     ->mixedTypes(max: 999)
     ->largeClasses(max: 999)
     ->writeBaseline();</code></pre>
 
-            <h2>Reason Checks</h2>
-            <p>`requireReasons()` fails PHPStan suppressions with fewer than three reason words. It does not apply to TODOs, `mixed`, or large classes.</p>
+                    <p>The MVP baseline flow is plain PHP, not a rich CLI. That is deliberate for now. The feature is useful before it needs a command palace.</p>
 
-            <h2>Tool Boundaries</h2>
-            <p>Vølven is not Pint, PHPStan, Psalm, Rector, Pest `arch()`, or a codemod. It tracks debt pressure. PHPStan type-shaping annotations such as `@phpstan-type`, `@phpstan-import-type`, `@phpstan-template`, `@phpstan-var`, `@phpstan-param`, and `@phpstan-return` are ignored because they describe contracts instead of suppressing them.</p>
+                    <h2 id="reasons">Reason Checks</h2>
+                    <p>`requireReasons()` fails PHPStan suppressions with fewer than three reason words. It does not apply to TODOs, `mixed`, or large classes.</p>
+                    <pre class="code-block"><code>/** @phpstan-ignore-next-line */              // fails
+/** @phpstan-ignore-line legacy */           // fails
+/** @phpstan-ignore-next-line vendor generic loses model type */ // passes</code></pre>
+
+                    <h2 id="output">Failure Output</h2>
+                    <p>Failures are written like Vølven review findings: priority, type, future cost, evidence, smallest useful fix, and the case where ignoring it is valid.</p>
+                    <pre class="code-block"><code>P1: PHPStan suppressions grew past the baseline
+type: code
+language: php
+future cost: old debt can be captured, but new debt should fail CI before it becomes normal
+evidence: baseline 12, current 14
+smallest useful fix: remove the new findings or regenerate the baseline after review
+ignore if: the increase is deliberate strategic debt with an owner and repayment path
+- src/Example.php:14 /** @phpstan-ignore-next-line vendor generic loses model type */</code></pre>
+
+                    <h2 id="phpstan">PHPStan Annotation Rules</h2>
+                    <p>Suppressions count. Type-shaping annotations do not. `@phpstan-type`, `@phpstan-import-type`, `@phpstan-template`, `@phpstan-var`, `@phpstan-param`, and `@phpstan-return` describe contracts, so Vølven leaves them alone.</p>
+
+                    <h2 id="ci">CI Example</h2>
+                    <pre class="code-block"><code>name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer
+      - run: composer install --no-interaction --prefer-dist
+      - run: composer test</code></pre>
+
+                    <h2 id="boundaries">Tool Boundaries</h2>
+                    <p>Vølven is not Pint, PHPStan, Psalm, Rector, Pest `arch()`, or a codemod. Those tools already have jobs. Vølven tracks debt pressure: whether debt grows, whether suppressions have reasons, and whether countable maintenance cost is drifting the wrong way.</p>
+                </article>
+                <aside class="doc-nav" aria-label="Page navigation">
+                    <a href="#quickstart">Quickstart</a>
+                    <a href="#signals">Signals</a>
+                    <a href="#budgets">Budgets</a>
+                    <a href="#baseline">Baseline</a>
+                    <a href="#reasons">Reasons</a>
+                    <a href="#output">Output</a>
+                    <a href="#ci">CI</a>
+                    <a href="#boundaries">Boundaries</a>
+                </aside>
+            </div>
         </section>
     </main>
 
