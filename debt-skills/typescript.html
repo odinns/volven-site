@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TypeScript Debt Skill | Vølven</title>
+    <meta name="description" content="The Vølven TypeScript debt skill reviews unsafe casts, trusted runtime data, duplicated state, React business logic, mocked tests, and config drift.">
+    <link rel="icon" href="../assets/images/baseline-ratchet.png">
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+    <header class="site-header" aria-label="Site header">
+        <a class="brand" href="../index.html" aria-label="Vølven home">
+            <span class="brand-mark" aria-hidden="true">ᚠ</span>
+            <span>Vølven</span>
+        </a>
+        <nav aria-label="Primary navigation">
+            <a href="../index.html">Home</a>
+            <a href="./">Debt skills</a>
+            <a href="../pest-plugin/">Pest</a>
+            <a href="https://github.com/odinns/volven-debt-typescript-skill">GitHub</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="doc-hero">
+            <div>
+                <p class="eyebrow">TypeScript skill</p>
+                <h1>Static types are not runtime contracts.</h1>
+                <p class="hero-copy">Use this skill where TypeScript is green but external data, casts, duplicated state, or UI logic still make the next change risky.</p>
+            </div>
+            <img class="doc-hero-image" src="../assets/images/brittle-tests.png" alt="">
+        </section>
+
+        <section class="section doc-section">
+            <h2>Signals</h2>
+            <ul>
+                <li>`any`, `unknown as`, non-null assertions, and casts that hide uncertainty.</li>
+                <li>API, local storage, URL, and event payloads trusted without validation.</li>
+                <li>State split across component, store, cache, URL, and server without one owner.</li>
+                <li>React components owning business rules that should live behind a boundary.</li>
+                <li>Mocks that prove implementation details while the real integration can break.</li>
+            </ul>
+            <h2>Boundary</h2>
+            <p>The skill does not replace ESLint, TypeScript, Prettier, codemods, framework checks, or architecture rules. It reviews what remains after those are done.</p>
+            <h2>Best Use</h2>
+            <p>Use it on API edges, React state changes, auth and billing flows, cache logic, schema migrations, and build config changes.</p>
+        </section>
+    </main>
+
+    <footer>
+        <span>Vølven</span>
+        <span><a href="./">Back to debt skills</a></span>
+    </footer>
+
+    <script src="../assets/site.js"></script>
+</body>
+</html>

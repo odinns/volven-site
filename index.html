@@ -16,9 +16,9 @@
         </a>
         <nav aria-label="Primary navigation">
             <a href="#suite">Suite</a>
+            <a href="debt-skills/">Debt skills</a>
             <a href="#signals">Signals</a>
-            <a href="#boundaries">Boundaries</a>
-            <a href="#pest">Pest</a>
+            <a href="pest-plugin/">Pest</a>
             <a href="#doctrine">Doctrine</a>
         </nav>
     </header>
@@ -30,8 +30,8 @@
                 <h1>Vølven sees the code that will hurt later.</h1>
                 <p class="hero-copy">A product family for finding future cost: hidden contracts, growing suppressions, brittle tests, upgrade friction, deploy friction, and the tiny assumptions that become expensive folklore.</p>
                 <div class="hero-actions" aria-label="Primary actions">
-                    <a class="button primary" href="#pest">See the Pest plugin</a>
-                    <a class="button secondary" href="#doctrine">Read the doctrine</a>
+                    <a class="button primary" href="pest-plugin/">See the Pest plugin</a>
+                    <a class="button secondary" href="debt-skills/">Read the debt skills</a>
                 </div>
             </div>
             <aside class="hero-panel" aria-label="Debt finding example">
@@ -58,27 +58,56 @@ ignore if: throwaway import code</code></pre>
                     <img class="card-image" src="./assets/images/hidden-contracts.png" alt="">
                     <h3>Core debt skill</h3>
                     <p>The doctrine. It separates real debt from local mess, taste complaints, and deliberate strategic shortcuts.</p>
+                    <div class="link-row">
+                        <a href="debt-skills/core.html">Docs</a>
+                        <a href="https://github.com/odinns/volven-debt-skill">GitHub</a>
+                    </div>
                 </article>
                 <article>
                     <img class="card-image" src="./assets/images/deploy-friction.png" alt="">
                     <h3>PHP and Laravel skills</h3>
                     <p>Weak arrays, stringly workflows, hidden Eloquent side effects, unsafe jobs, migration risk, and stale framework assumptions.</p>
+                    <div class="link-row">
+                        <a href="debt-skills/php.html">PHP</a>
+                        <a href="debt-skills/laravel.html">Laravel</a>
+                    </div>
                 </article>
                 <article>
                     <img class="card-image" src="./assets/images/language-variants.png" alt="">
                     <h3>Python skill</h3>
                     <p>Implicit schemas, mutable globals, swallowed exceptions, async failure paths, and scripts pretending to be architecture.</p>
+                    <div class="link-row">
+                        <a href="debt-skills/python.html">Docs</a>
+                        <a href="https://github.com/odinns/volven-debt-python-skill">GitHub</a>
+                    </div>
                 </article>
                 <article>
                     <img class="card-image" src="./assets/images/brittle-tests.png" alt="">
                     <h3>TypeScript and JavaScript skills</h3>
                     <p>Runtime contracts, casts that silence uncertainty, duplicated state, unsafe API boundaries, and mock-heavy tests.</p>
+                    <div class="link-row">
+                        <a href="debt-skills/typescript.html">TypeScript</a>
+                        <a href="debt-skills/javascript.html">JavaScript</a>
+                    </div>
                 </article>
                 <article>
                     <img class="card-image" src="./assets/images/baseline-ratchet.png" alt="">
                     <h3>Pest plugin</h3>
                     <p>Deterministic debt budgets for PHP projects. Old debt can be captured. New debt fails CI.</p>
+                    <div class="link-row">
+                        <a href="pest-plugin/">Docs</a>
+                        <a href="https://github.com/odinns/volven-pest-plugin">GitHub</a>
+                    </div>
                 </article>
+            </div>
+            <div class="repo-list" aria-label="GitHub repositories">
+                <a href="https://github.com/odinns/volven-debt-skill">Core skill repo</a>
+                <a href="https://github.com/odinns/volven-debt-php-skill">PHP skill repo</a>
+                <a href="https://github.com/odinns/volven-debt-laravel-skill">Laravel skill repo</a>
+                <a href="https://github.com/odinns/volven-debt-python-skill">Python skill repo</a>
+                <a href="https://github.com/odinns/volven-debt-typescript-skill">TypeScript skill repo</a>
+                <a href="https://github.com/odinns/volven-debt-javascript-skill">JavaScript skill repo</a>
+                <a href="https://github.com/odinns/volven-pest-plugin">Pest plugin repo</a>
             </div>
         </section>
 
@@ -142,6 +171,7 @@ ignore if: throwaway import code</code></pre>
                         <span>Block fresh debt</span>
                         <span>Keep reasons attached</span>
                     </div>
+                    <p><a href="pest-plugin/">Read the full Pest plugin docs</a></p>
                 </div>
                 <img class="section-image" src="./assets/images/baseline-ratchet.png" alt="">
             </div>
@@ -218,18 +248,22 @@ ignore if: throwaway import code</code></pre>
                 <article>
                     <strong>Laravel</strong>
                     <p>Model events hiding side effects, queued jobs without idempotency, production-lock migrations, config reads outside config files.</p>
+                    <a href="debt-skills/laravel.html">Read Laravel docs</a>
                 </article>
                 <article>
                     <strong>Python</strong>
                     <p>Dynamic dictionaries through core paths, swallowed exceptions, async code without cancellation discipline, implicit data-pipeline schemas.</p>
+                    <a href="debt-skills/python.html">Read Python docs</a>
                 </article>
                 <article>
                     <strong>TypeScript</strong>
                     <p>`any`, unsafe casts, runtime API trust, React components owning business rules, state split across URL, cache, store, and component.</p>
+                    <a href="debt-skills/typescript.html">Read TypeScript docs</a>
                 </article>
                 <article>
                     <strong>JavaScript</strong>
                     <p>Hidden object shapes, callback/promise mixing, mutable shared state, framework magic without local conventions.</p>
+                    <a href="debt-skills/javascript.html">Read JavaScript docs</a>
                 </article>
             </div>
         </section>

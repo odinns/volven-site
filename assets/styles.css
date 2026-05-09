@@ -113,6 +113,16 @@ nav a:active,
     overflow: hidden;
 }
 
+.doc-hero {
+    display: grid;
+    min-height: 72svh;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.55fr);
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+    padding: clamp(3rem, 7vw, 7rem) clamp(1rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem);
+    box-shadow: inset 0 -1px 0 oklch(1 0 0 / 0.08);
+}
+
 .hero::before {
     position: absolute;
     inset: 14% auto auto 48%;
@@ -230,7 +240,9 @@ footer {
 .signal-grid article,
 .budget-grid article,
 .workflow-steps article,
-.variant-list article {
+.variant-list article,
+.doc-grid article,
+.doc-section {
     border-radius: var(--radius);
     background: linear-gradient(145deg, oklch(0.300 0.065 139 / 0.94), oklch(0.180 0.036 145 / 0.94));
     box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.10), 0 24px 70px var(--shadow);
@@ -246,7 +258,8 @@ footer {
 
 .panel-image,
 .card-image,
-.section-image {
+.section-image,
+.doc-hero-image {
     display: block;
     width: 100%;
     object-fit: cover;
@@ -338,7 +351,8 @@ pre {
 .signal-grid,
 .budget-grid,
 .workflow-steps,
-.variant-list {
+.variant-list,
+.doc-grid {
     display: grid;
     gap: 0.85rem;
 }
@@ -357,6 +371,10 @@ pre {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.doc-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .suite-grid article,
 .signal-grid article {
     min-height: 14rem;
@@ -365,7 +383,8 @@ pre {
 
 .budget-grid article,
 .workflow-steps article,
-.variant-list article {
+.variant-list article,
+.doc-grid article {
     padding: 1rem;
 }
 
@@ -377,6 +396,55 @@ pre {
 .section-image {
     aspect-ratio: 16 / 10;
     margin-bottom: 1rem;
+}
+
+.doc-hero-image {
+    aspect-ratio: 4 / 3;
+}
+
+.doc-section {
+    max-width: 62rem;
+    margin: clamp(2rem, 5vw, 4rem) auto;
+}
+
+.doc-section h2:not(:first-child) {
+    margin-top: 2rem;
+}
+
+.doc-section li + li {
+    margin-top: 0.55rem;
+}
+
+.link-row,
+.repo-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.link-row a,
+.repo-list a,
+.doc-grid a,
+.variant-list a,
+.doc-section a,
+.pest-layout a,
+footer a {
+    color: var(--fern-200);
+    font-weight: 800;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.22em;
+}
+
+.repo-list {
+    margin-top: 1.25rem;
+}
+
+.repo-list a {
+    padding: 0.55rem 0.7rem;
+    border-radius: 999px;
+    background: oklch(1 0 0 / 0.08);
+    text-decoration: none;
 }
 
 .section-intro {
@@ -565,6 +633,7 @@ footer span:first-child {
 
 @media (max-width: 980px) {
     .hero,
+    .doc-hero,
     .split,
     .doctrine,
     .pest-layout,
@@ -575,7 +644,8 @@ footer span:first-child {
     .suite-grid,
     .signal-grid,
     .budget-grid,
-    .workflow-steps {
+    .workflow-steps,
+    .doc-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
@@ -605,7 +675,8 @@ footer span:first-child {
     .signal-grid,
     .budget-grid,
     .workflow-steps,
-    .variant-list {
+    .variant-list,
+    .doc-grid {
         grid-template-columns: 1fr;
     }
 

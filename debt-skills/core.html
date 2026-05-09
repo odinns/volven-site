@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Core Debt Skill | Vølven</title>
+    <meta name="description" content="The core Vølven debt-review doctrine for finding future maintenance cost instead of style noise.">
+    <link rel="icon" href="../assets/images/baseline-ratchet.png">
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+    <header class="site-header" aria-label="Site header">
+        <a class="brand" href="../index.html" aria-label="Vølven home">
+            <span class="brand-mark" aria-hidden="true">ᚠ</span>
+            <span>Vølven</span>
+        </a>
+        <nav aria-label="Primary navigation">
+            <a href="../index.html">Home</a>
+            <a href="./">Debt skills</a>
+            <a href="../pest-plugin/">Pest</a>
+            <a href="https://github.com/odinns/volven-debt-skill">GitHub</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="doc-hero">
+            <div>
+                <p class="eyebrow">Core skill</p>
+                <h1>Debt is future cost, not ugliness.</h1>
+                <p class="hero-copy">Use the core skill when a review needs judgment about maintenance risk instead of another pass over style, taste, or generic smell words.</p>
+            </div>
+            <img class="doc-hero-image" src="../assets/images/hidden-contracts.png" alt="">
+        </section>
+
+        <section class="section doc-section">
+            <h2>What It Looks For</h2>
+            <ul>
+                <li>Hidden coupling and undocumented contracts.</li>
+                <li>Brittle tests that protect choreography instead of behavior.</li>
+                <li>Unsafe dynamic behavior that moves risk to runtime.</li>
+                <li>Deploy and upgrade friction waiting for the wrong Friday.</li>
+                <li>Trapped knowledge that only one person or fixture understands.</li>
+            </ul>
+            <h2>What It Ignores</h2>
+            <p>Formatting, broad refactor sermons, duplicate static-analysis findings, and taste complaints. Those do not become useful just because they are delivered confidently.</p>
+            <h2>Finding Shape</h2>
+            <pre class="code-block"><code>P2: Order state lives as loose strings
+type: code
+future cost: new states drift across policies
+evidence: string literals drive transitions
+smallest useful fix: add an enum boundary
+ignore if: throwaway import code</code></pre>
+        </section>
+    </main>
+
+    <footer>
+        <span>Vølven</span>
+        <span><a href="./">Back to debt skills</a></span>
+    </footer>
+
+    <script src="../assets/site.js"></script>
+</body>
+</html>

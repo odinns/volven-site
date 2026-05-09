@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JavaScript Debt Skill | Vølven</title>
+    <meta name="description" content="The Vølven JavaScript debt skill reviews missing contracts, hidden object shapes, async mixing, shared state, utility drift, framework magic, and weak tests.">
+    <link rel="icon" href="../assets/images/baseline-ratchet.png">
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+    <header class="site-header" aria-label="Site header">
+        <a class="brand" href="../index.html" aria-label="Vølven home">
+            <span class="brand-mark" aria-hidden="true">ᚠ</span>
+            <span>Vølven</span>
+        </a>
+        <nav aria-label="Primary navigation">
+            <a href="../index.html">Home</a>
+            <a href="./">Debt skills</a>
+            <a href="../pest-plugin/">Pest</a>
+            <a href="https://github.com/odinns/volven-debt-javascript-skill">GitHub</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="doc-hero">
+            <div>
+                <p class="eyebrow">JavaScript skill</p>
+                <h1>Runtime shape is the contract.</h1>
+                <p class="hero-copy">Use this skill when the expensive failures will come from missing contracts, hidden mutation, async drift, or framework behavior nobody has written down.</p>
+            </div>
+            <img class="doc-hero-image" src="../assets/images/hidden-contracts.png" alt="">
+        </section>
+
+        <section class="section doc-section">
+            <h2>Signals</h2>
+            <ul>
+                <li>Objects whose expected shape only exists in caller memory.</li>
+                <li>Callback and promise mixing that hides ordering or error behavior.</li>
+                <li>Mutable shared state touched from unrelated paths.</li>
+                <li>Divergent helper functions that encode competing business rules.</li>
+                <li>Framework magic without local conventions or tests around the edge.</li>
+            </ul>
+            <h2>Boundary</h2>
+            <p>The skill does not replace ESLint, Prettier, framework checks, or codemods. It looks for runtime debt those tools will politely walk past.</p>
+            <h2>Best Use</h2>
+            <p>Use it on browser integrations, Node services, shared utilities, async workflows, legacy modules, and framework-heavy code.</p>
+        </section>
+    </main>
+
+    <footer>
+        <span>Vølven</span>
+        <span><a href="./">Back to debt skills</a></span>
+    </footer>
+
+    <script src="../assets/site.js"></script>
+</body>
+</html>

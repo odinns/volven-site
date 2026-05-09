@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PHP Debt Skill | Vølven</title>
+    <meta name="description" content="The Vølven PHP debt skill reviews weak contracts, unsafe mixed boundaries, magic strings, misleading PHPDoc, and shallow tests.">
+    <link rel="icon" href="../assets/images/baseline-ratchet.png">
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+    <header class="site-header" aria-label="Site header">
+        <a class="brand" href="../index.html" aria-label="Vølven home">
+            <span class="brand-mark" aria-hidden="true">ᚠ</span>
+            <span>Vølven</span>
+        </a>
+        <nav aria-label="Primary navigation">
+            <a href="../index.html">Home</a>
+            <a href="./">Debt skills</a>
+            <a href="../pest-plugin/">Pest</a>
+            <a href="https://github.com/odinns/volven-debt-php-skill">GitHub</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="doc-hero">
+            <div>
+                <p class="eyebrow">PHP skill</p>
+                <h1>Find the PHP contracts hiding in plain sight.</h1>
+                <p class="hero-copy">Use this skill after Pint, PHPStan, Psalm, Rector, and the test suite have done their normal jobs.</p>
+            </div>
+            <img class="doc-hero-image" src="../assets/images/growing-suppressions.png" alt="">
+        </section>
+
+        <section class="section doc-section">
+            <h2>Signals</h2>
+            <ul>
+                <li>Array shapes passed through core paths without a named contract.</li>
+                <li>`mixed` at boundaries where the shape is used before validation.</li>
+                <li>Magic workflow strings that should be enums or value objects.</li>
+                <li>PHPDoc that silences uncertainty without making behavior clearer.</li>
+                <li>Tests that mock internals while missing real boundary behavior.</li>
+            </ul>
+            <h2>Boundary</h2>
+            <p>The skill does not replace static analysis. It asks what still gets expensive after static analysis is green.</p>
+            <h2>Pair It With Pest</h2>
+            <p>The Pest plugin gives PHP projects a deterministic ratchet for suppressions, TODOs, `mixed`, and large classes.</p>
+            <p><a href="../pest-plugin/">Read the Pest plugin docs</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <span>Vølven</span>
+        <span><a href="./">Back to debt skills</a></span>
+    </footer>
+
+    <script src="../assets/site.js"></script>
+</body>
+</html>

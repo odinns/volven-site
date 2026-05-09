@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vølven Pest Plugin</title>
+    <meta name="description" content="Vølven Pest plugin documentation for deterministic PHP technical-debt budgets, baselines, ratchets, and CI checks.">
+    <link rel="icon" href="../assets/images/baseline-ratchet.png">
+    <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+    <header class="site-header" aria-label="Site header">
+        <a class="brand" href="../index.html" aria-label="Vølven home">
+            <span class="brand-mark" aria-hidden="true">ᚠ</span>
+            <span>Vølven</span>
+        </a>
+        <nav aria-label="Primary navigation">
+            <a href="../index.html">Home</a>
+            <a href="../debt-skills/">Debt skills</a>
+            <a href="https://github.com/odinns/volven-pest-plugin">GitHub</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="doc-hero">
+            <div>
+                <p class="eyebrow">Pest plugin</p>
+                <h1>Make debt growth fail in CI.</h1>
+                <p class="hero-copy">The plugin scans deterministic PHP debt signals, compares them to explicit budgets, and can ratchet against a committed baseline.</p>
+            </div>
+            <img class="doc-hero-image" src="../assets/images/baseline-ratchet.png" alt="">
+        </section>
+
+        <section class="section doc-section">
+            <h2>Install</h2>
+            <pre class="code-block"><code>composer require --dev odinns/volven-pest-plugin</code></pre>
+
+            <h2>Basic Pest Test</h2>
+            <pre class="code-block"><code>it('keeps debt inside the budget', function (): void {
+    debt()->budget()
+        ->phpstanIgnores(max: 12)
+        ->todoComments(max: 20)
+        ->mixedTypes(max: 12)
+        ->largeClasses(max: 5)
+        ->mustNotGrow()
+        ->requireReasons()
+        ->assert();
+});</code></pre>
+
+            <h2>Supported Signals</h2>
+            <ul>
+                <li>PHPStan suppression annotations: `@phpstan-ignore`, `@phpstan-ignore-line`, `@phpstan-ignore-next-line`, and `@phpstan-ignore-*`.</li>
+                <li>TODO and FIXME comments.</li>
+                <li>`mixed` types.</li>
+                <li>Large class-like PHP files.</li>
+            </ul>
+
+            <h2>Baseline And Ratchet</h2>
+            <p>Generate `.volven/debt-baseline.json` from PHP, commit it, then use `mustNotGrow()` in the budget test. Current MVP baseline generation is intentionally plain PHP, not a rich CLI.</p>
+            <pre class="code-block"><code>debt()->budget()
+    ->phpstanIgnores(max: 999)
+    ->todoComments(max: 999)
+    ->mixedTypes(max: 999)
+    ->largeClasses(max: 999)
+    ->writeBaseline();</code></pre>
+
+            <h2>Reason Checks</h2>
+            <p>`requireReasons()` fails PHPStan suppressions with fewer than three reason words. It does not apply to TODOs, `mixed`, or large classes.</p>
+
+            <h2>Tool Boundaries</h2>
+            <p>Vølven is not Pint, PHPStan, Psalm, Rector, Pest `arch()`, or a codemod. It tracks debt pressure. PHPStan type-shaping annotations such as `@phpstan-type`, `@phpstan-import-type`, `@phpstan-template`, `@phpstan-var`, `@phpstan-param`, and `@phpstan-return` are ignored because they describe contracts instead of suppressing them.</p>
+        </section>
+    </main>
+
+    <footer>
+        <span>Vølven</span>
+        <span><a href="../index.html">Home</a></span>
+    </footer>
+
+    <script src="../assets/site.js"></script>
+</body>
+</html>
