@@ -9,7 +9,7 @@ for (const link of links) {
 const motionAllowed = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
 
 if (motionAllowed) {
-    const revealTargets = document.querySelectorAll('.section, .hero-panel, .suite-grid article, .signal-grid article, .budget-grid article, .workflow-steps article, .variant-list article');
+    const revealTargets = document.querySelectorAll('.hero-panel, .suite-grid article, .signal-grid article, .budget-grid article, .workflow-steps article, .variant-list article');
 
     const revealObserver = new IntersectionObserver((entries) => {
         for (const entry of entries) {
@@ -21,8 +21,8 @@ if (motionAllowed) {
             revealObserver.unobserve(entry.target);
         }
     }, {
-        rootMargin: '0px 0px -12% 0px',
-        threshold: 0.12,
+        rootMargin: '0px 0px -8% 0px',
+        threshold: 0.01,
     });
 
     for (const target of revealTargets) {
