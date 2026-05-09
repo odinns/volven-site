@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vølven | Technical Debt Seer Tooling</title>
+    <meta name="description" content="Vølven sees the code that will hurt later. Debt-review skills and Pest budgets for teams that want debt growth to fail in CI.">
+    <link rel="icon" href="./assets/images/baseline-ratchet.png">
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+    <header class="site-header" aria-label="Site header">
+        <a class="brand" href="#top" aria-label="Vølven home">
+            <span class="brand-mark" aria-hidden="true">ᚠ</span>
+            <span>Vølven</span>
+        </a>
+        <nav aria-label="Primary navigation">
+            <a href="#suite">Suite</a>
+            <a href="#signals">Signals</a>
+            <a href="#boundaries">Boundaries</a>
+            <a href="#pest">Pest</a>
+            <a href="#doctrine">Doctrine</a>
+        </nav>
+    </header>
+
+    <main id="top">
+        <section class="hero">
+            <div class="hero-inner">
+                <p class="eyebrow">Technical debt seer tooling</p>
+                <h1>Vølven sees the code that will hurt later.</h1>
+                <p class="hero-copy">A product family for finding future cost: hidden contracts, growing suppressions, brittle tests, upgrade friction, deploy friction, and the tiny assumptions that become expensive folklore.</p>
+                <div class="hero-actions" aria-label="Primary actions">
+                    <a class="button primary" href="#pest">See the Pest plugin</a>
+                    <a class="button secondary" href="#doctrine">Read the doctrine</a>
+                </div>
+            </div>
+            <aside class="hero-panel" aria-label="Debt finding example">
+                <img class="panel-image" src="./assets/images/baseline-ratchet.png" alt="">
+                <p class="panel-label">Finding shape</p>
+                <pre><code>P2: Order state lives as loose strings
+app/Orders/OrderWorkflow.php:47
+type: code
+future cost: new states drift across policies
+evidence: string literals drive transitions
+smallest useful fix: add an enum boundary
+ignore if: throwaway import code</code></pre>
+            </aside>
+        </section>
+
+        <section id="suite" class="section">
+            <div class="section-heading">
+                <p class="eyebrow">The suite</p>
+                <h2>One debt model. Different edges.</h2>
+                <p>Vølven is split into focused tools so each one can stay useful instead of becoming another lint-shaped attic.</p>
+            </div>
+            <div class="suite-grid">
+                <article>
+                    <img class="card-image" src="./assets/images/hidden-contracts.png" alt="">
+                    <h3>Core debt skill</h3>
+                    <p>The doctrine. It separates real debt from local mess, taste complaints, and deliberate strategic shortcuts.</p>
+                </article>
+                <article>
+                    <img class="card-image" src="./assets/images/deploy-friction.png" alt="">
+                    <h3>PHP and Laravel skills</h3>
+                    <p>Weak arrays, stringly workflows, hidden Eloquent side effects, unsafe jobs, migration risk, and stale framework assumptions.</p>
+                </article>
+                <article>
+                    <img class="card-image" src="./assets/images/language-variants.png" alt="">
+                    <h3>Python skill</h3>
+                    <p>Implicit schemas, mutable globals, swallowed exceptions, async failure paths, and scripts pretending to be architecture.</p>
+                </article>
+                <article>
+                    <img class="card-image" src="./assets/images/brittle-tests.png" alt="">
+                    <h3>TypeScript and JavaScript skills</h3>
+                    <p>Runtime contracts, casts that silence uncertainty, duplicated state, unsafe API boundaries, and mock-heavy tests.</p>
+                </article>
+                <article>
+                    <img class="card-image" src="./assets/images/baseline-ratchet.png" alt="">
+                    <h3>Pest plugin</h3>
+                    <p>Deterministic debt budgets for PHP projects. Old debt can be captured. New debt fails CI.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="signals" class="section">
+            <div class="section-heading">
+                <p class="eyebrow">Debt signals</p>
+                <h2>The things Vølven cares about have a bill attached.</h2>
+                <p>Not every rough edge matters. Vølven looks for signals that change how expensive the next month, deploy, upgrade, or incident becomes.</p>
+            </div>
+            <div class="signal-grid">
+                <article>
+                    <img class="card-image" src="./assets/images/hidden-contracts.png" alt="">
+                    <h3>Hidden contracts</h3>
+                    <p>Call order, magic names, lifecycle assumptions, and test fixtures that know more than production code.</p>
+                </article>
+                <article>
+                    <img class="card-image" src="./assets/images/growing-suppressions.png" alt="">
+                    <h3>Growing suppressions</h3>
+                    <p>Inline ignores and tolerated uncertainty that quietly become project policy because CI stopped asking questions.</p>
+                </article>
+                <article>
+                    <img class="card-image" src="./assets/images/brittle-tests.png" alt="">
+                    <h3>Misleading tests</h3>
+                    <p>Mocks that assert choreography while the real behavior, boundary, queue, or integration path can still break.</p>
+                </article>
+                <article>
+                    <img class="card-image" src="./assets/images/deploy-friction.png" alt="">
+                    <h3>Deploy and upgrade friction</h3>
+                    <p>Migrations, environment assumptions, stale adapters, and framework quirks that turn ordinary releases into archaeology.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="boundaries" class="section split">
+            <div>
+                <p class="eyebrow">Boundaries</p>
+                <h2>Vølven does not cosplay as your existing tools.</h2>
+                <p>Pint owns style. PHPStan and Psalm own type correctness. Rector owns mechanical fixes. Pest <code>arch()</code> owns architecture rules. ESLint, TypeScript, Ruff, mypy, and pyright already have jobs.</p>
+                <p>Vølven owns debt pressure: whether known debt is growing, whether hidden contracts are getting riskier, and whether maintenance cost is moving in the wrong direction.</p>
+            </div>
+            <div>
+                <img class="section-image" src="./assets/images/language-variants.png" alt="">
+                <div class="boundary-list" aria-label="Tool boundaries">
+                    <span>Pint: style</span>
+                    <span>PHPStan: type correctness</span>
+                    <span>Rector: mechanical refactors</span>
+                    <span>Pest arch: structure rules</span>
+                    <span>Vølven: future cost</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="pest" class="section pest-band">
+            <div class="pest-layout">
+                <div>
+                    <p class="eyebrow">Pest plugin</p>
+                    <h2>Make debt growth fail loudly.</h2>
+                    <p>The plugin tracks deterministic debt signals, compares them to a committed baseline, and reports findings in the same shape as the Vølven doctrine.</p>
+                    <div class="pest-points">
+                        <span>Baseline old debt</span>
+                        <span>Block fresh debt</span>
+                        <span>Keep reasons attached</span>
+                    </div>
+                </div>
+                <img class="section-image" src="./assets/images/baseline-ratchet.png" alt="">
+            </div>
+            <pre class="code-block"><code>debt()->budget()
+    ->phpstanIgnores(max: 12)
+    ->todoComments(max: 20)
+    ->mixedTypes(max: 12)
+    ->largeClasses(max: 5)
+    ->mustNotGrow()
+    ->requireReasons()
+    ->assert();</code></pre>
+            <div class="budget-grid">
+                <article>
+                    <h3>PHPStan ignores</h3>
+                    <p>Counts suppression annotations only. Type-shaping annotations stay clean, because contracts are not debt.</p>
+                </article>
+                <article>
+                    <h3>TODO and FIXME</h3>
+                    <p>Tracks unowned work before it becomes “everybody knows why this is here” folklore.</p>
+                </article>
+                <article>
+                    <h3>Mixed types</h3>
+                    <p>Finds important unknowns crossing boundaries without a visible contract or validation point.</p>
+                </article>
+                <article>
+                    <h3>Large classes</h3>
+                    <p>Flags class-like files large enough to trap unrelated reasons to change.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section workflow">
+            <div class="section-intro">
+                <div class="section-heading">
+                    <p class="eyebrow">Workflow</p>
+                    <h2>Legacy-friendly without pretending legacy is fine.</h2>
+                    <p>Vølven starts where the codebase is. Capture the existing debt, then stop the next commit from making the pile taller.</p>
+                </div>
+                <img class="section-image" src="./assets/images/growing-suppressions.png" alt="">
+            </div>
+            <div class="workflow-steps">
+                <article>
+                    <span>01</span>
+                    <h3>Scan</h3>
+                    <p>Find deterministic debt signals and format failures like useful review findings, not lint confetti.</p>
+                </article>
+                <article>
+                    <span>02</span>
+                    <h3>Baseline</h3>
+                    <p>Commit `.volven/debt-baseline.json` so existing debt is visible without blocking all progress.</p>
+                </article>
+                <article>
+                    <span>03</span>
+                    <h3>Ratchet</h3>
+                    <p>Use `mustNotGrow()` to fail CI when new debt appears outside the agreed budget.</p>
+                </article>
+                <article>
+                    <span>04</span>
+                    <h3>Repay</h3>
+                    <p>Fix the smallest useful slice first. Large rewrites are usually procrastination with a cape.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="section variants">
+            <div class="section-intro">
+                <div class="section-heading">
+                    <p class="eyebrow">Language variants</p>
+                    <h2>The same debt idea, translated into local failure modes.</h2>
+                </div>
+                <img class="section-image" src="./assets/images/language-variants.png" alt="">
+            </div>
+            <div class="variant-list">
+                <article>
+                    <strong>Laravel</strong>
+                    <p>Model events hiding side effects, queued jobs without idempotency, production-lock migrations, config reads outside config files.</p>
+                </article>
+                <article>
+                    <strong>Python</strong>
+                    <p>Dynamic dictionaries through core paths, swallowed exceptions, async code without cancellation discipline, implicit data-pipeline schemas.</p>
+                </article>
+                <article>
+                    <strong>TypeScript</strong>
+                    <p>`any`, unsafe casts, runtime API trust, React components owning business rules, state split across URL, cache, store, and component.</p>
+                </article>
+                <article>
+                    <strong>JavaScript</strong>
+                    <p>Hidden object shapes, callback/promise mixing, mutable shared state, framework magic without local conventions.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="doctrine" class="section doctrine">
+            <div>
+                <p class="eyebrow">Doctrine</p>
+                <h2>Debt is future cost, not ugliness.</h2>
+                <img class="section-image" src="./assets/images/hidden-contracts.png" alt="">
+            </div>
+            <ol>
+                <li>Flag hidden coupling, brittle contracts, misleading tests, unsafe dynamic behavior, upgrade friction, deploy friction, and trapped knowledge.</li>
+                <li>Do not flag style, generic smells, duplicate static-analysis findings, or broad refactor sermons.</li>
+                <li>Every finding needs evidence, the smallest useful fix, and a reason it may be acceptable.</li>
+                <li>Separate real debt from local mess, taste complaints, and deliberate strategic debt.</li>
+                <li>Prioritize by risk, blast radius, change frequency, and fix cost. No fake debt scores. The world has enough pretend precision.</li>
+            </ol>
+        </section>
+    </main>
+
+    <footer>
+        <span>Vølven</span>
+        <span>Built for codebases where debt should stop multiplying in the dark.</span>
+    </footer>
+
+    <script src="./assets/site.js"></script>
+</body>
+</html>
